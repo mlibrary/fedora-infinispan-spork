@@ -1,0 +1,7 @@
+/fcrepo4
+/infinispan-war
+/fcrepo4-data
+/log
+*.swp
+*.swo
+*~

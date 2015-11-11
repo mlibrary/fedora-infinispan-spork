@@ -1,0 +1,26 @@
+diff --git a/fcrepo-webapp/pom.xml b/fcrepo-webapp/pom.xml
+index 33cd7e9..0fa954c 100644
+--- a/fcrepo-webapp/pom.xml
++++ b/fcrepo-webapp/pom.xml
+@@ -139,6 +139,21 @@
+       <artifactId>infinispan-cachestore-leveldb</artifactId>
+     </dependency>
+     <dependency>
++      <groupId>org.infinispan</groupId>
++      <artifactId>infinispan-server-core</artifactId>
++      <version>${infinispan.version}</version>
++    </dependency>
++    <dependency>
++      <groupId>org.infinispan</groupId>
++      <artifactId>infinispan-server-hotrod</artifactId>
++      <version>${infinispan.version}</version>
++    </dependency>
++    <dependency>
++      <groupId>org.infinispan</groupId>
++      <artifactId>infinispan-server-memcached</artifactId>
++      <version>${infinispan.version}</version>
++    </dependency>
++    <dependency>
+       <groupId>net.sourceforge.htmlunit</groupId>
+       <artifactId>htmlunit</artifactId>
+       <scope>test</scope>

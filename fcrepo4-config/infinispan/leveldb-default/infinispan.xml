@@ -1,0 +1,34 @@
+<infinispan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="urn:infinispan:config:6.0"
+    xmlns:store="urn:infinispan:config:store:leveldb:6.0"
+    xsi:schemaLocation="urn:infinispan:config:6.0 http://www.infinispan.org/schemas/infinispan-config-6.0.xsd urn:infinispan:config:store:leveldb:6.0 http://infinispan.org/schemas/infinispan-cachestore-leveldb-config-6.0.xsd">
+  <global>
+    <globalJmxStatistics enabled="false" allowDuplicateDomains="true"/>
+  </global>
+
+  <default>
+    <expiration wakeUpInterval="-1" />
+    <unsafe unreliableReturnValues="true" />
+  </default>
+
+  <namedCache name="FedoraRepository">
+
+    <eviction maxEntries="500"  strategy="LIRS" threadPolicy="PIGGYBACK"/>
+
+    <transaction
+        transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+        transactionMode="TRANSACTIONAL"
+        lockingMode="PESSIMISTIC"/>
+
+    <!-- Define the cache loaders (i.e., cache stores). Passivation is false
+         because we want *all* data to be persisted, not just what doesn't fit
+         into memory. -->
+    <persistence passivation="false">
+      <store:leveldbStore
+          location="${fcrepo.ispn.repo.cache:target}/data"
+          expiredLocation="${fcrepo.ispn.repo.cache:target}/expired"/>
+    </persistence>
+
+  </namedCache>
+
+</infinispan>
